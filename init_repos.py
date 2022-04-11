@@ -9,9 +9,9 @@ import subprocess
 DIR_FOR_REPOS: str = '/home/hypermaq/repos'
 # REPOS_LIST: list of all repo names that need to be cloned from github.com/Panthyr
 REPOS_LIST: List[str] = [
-    'shell_scripts', 'dummy', 'panthyr_logging', 'panthyr_db', 'panthyr_credentials',
-    'panthyr_core', 'panthyr_suncalc', 'panthyr_gpio', 'panthyr_ftp', 'panthyr_flir_ptu_d48e',
-    'panthyr_gnss', 'panthyr_ip_check'
+    'shell_scripts', 'panthyr_logging', 'panthyr_db', 'panthyr_credentials', 'panthyr_core',
+    'panthyr_suncalc', 'panthyr_gpio', 'panthyr_ftp', 'panthyr_flir_ptu_d48e', 'panthyr_gnss',
+    'panthyr_ip_check'
 ]
 
 
