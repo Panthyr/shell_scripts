@@ -1,0 +1,7 @@
+# place in /home/hypermaq/.ssh directory
+
+Host *
+    HostName github.com
+    User git
+    IdentityFile /home/hypermaq/.ssh/panthyr
+    IdentitiesOnly yes
