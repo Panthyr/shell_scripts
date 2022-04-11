@@ -19,8 +19,8 @@ def main():
 
     prepare_dir()
 
-    failed_clone: List = []  # List of failed repos
-    failed_install: List = []
+    failed_clone: List = []  # List of failed clones
+    failed_install: List = []  # List of failed package installs
     for repo in REPOS_LIST:
         failed_clone = clone_repo(repo, failed_clone)
 
@@ -31,8 +31,10 @@ def main():
 
     if any([failed_clone, failed_install]):
         print('FINISHED WITH ERRORS:')
-        print(f'FAILED REPOS: {", ".join(failed_clone)}')
-        print(f'CLONED OK BUT FAILED INSTALLS: {", ".join(failed_install)}')
+        if failed_clone:
+            print(f'FAILED REPOS: {", ".join(failed_clone)}')
+        if failed_install:
+            print(f'CLONED OK BUT FAILED INSTALLS: {", ".join(failed_install)}')
     else:
         print('FINISHED.')
 
