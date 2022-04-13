@@ -21,13 +21,18 @@ def main():
 
     failed_clone: List = []  # List of failed clones
     failed_install: List = []  # List of failed package installs
+
+    _reqs = input('Do you want to install from requirements files?\n'
+                  'Enter "y" to install')
+    install_reqs = _reqs == 'y'
+
     for repo in REPOS_LIST:
         failed_clone = clone_repo(repo, failed_clone)
 
     for repo in REPOS_LIST:
         if repo in failed_clone:
             continue
-        install_pkg(repo, failed_install)
+        install_pkg(repo, install_reqs, failed_install)
 
     if any([failed_clone, failed_install]):
         print('FINISHED WITH ERRORS:')
@@ -39,7 +44,7 @@ def main():
         print('FINISHED.')
 
 
-def install_pkg(repo: str, failed_install: List):
+def install_pkg(repo: str, req: bool, failed_install: List):
     print(f'-> INSTALLING PACKAGE {repo} (MASTER branch!)...', end='', flush=False)
     rtn = subprocess.run(['pip', 'install', '-e', _target_dir(repo)],
                          capture_output=True,
@@ -48,6 +53,22 @@ def install_pkg(repo: str, failed_install: List):
         print('OK.')
     else:
         print('\nIssue during installation:')
+        print(f'{rtn.stderr}')
+        failed_install.append(f'{repo}')
+    if req:
+        failed_install = install_requirements(repo, failed_install)
+    return (failed_install)
+
+
+def install_requirements(repo: str, failed_install: List):
+    print(f'-> INSTALLING REQUIREMENTS FOR PACKAGE {repo}...', end='', flush=False)
+    rtn = subprocess.run(
+        ['pip', 'install', '-r', _requirements_location(repo)], capture_output=True, text=True)
+
+    if rtn.returncode == 0:
+        print('OK.')
+    else:
+        print('\nIssue during installation of requirements:')
         print(f'{rtn.stderr}')
         failed_install.append(f'{repo}')
     return (failed_install)
@@ -71,6 +92,10 @@ def clone_repo(repo: str, failed: List):
 
 def _target_dir(repo: str):
     return (os.path.join(DIR_FOR_REPOS, repo))
+
+
+def _requirements_location(repo: str):
+    return (os.path.join(_target_dir(repo), 'requirements.txt'))
 
 
 def prepare_dir():
