@@ -18,6 +18,7 @@ REPOS_LIST: List[str] = [
 def main():
 
     prepare_dir()
+    upgrade_pip()
 
     failed_clone: List = []  # List of failed clones
     failed_install: List = []  # List of failed package installs
@@ -58,6 +59,16 @@ def install_pkg(repo: str, req: bool, failed_install: List):
     if req:
         failed_install = install_requirements(repo, failed_install)
     return (failed_install)
+
+
+def upgrade_pip() -> None:
+    print('Upgrading PIP', end='', flush=False)
+    rtn = subprocess.run(['pip', 'install', '--upgrade', 'pip'], capture_output=True, text=True)
+    if rtn.returncode == 0:
+        print('OK.')
+    else:
+        ('\n Issue while upgrading PIP: ')
+        print(f'{rtn.stderr}')
 
 
 def install_requirements(repo: str, failed_install: List):
