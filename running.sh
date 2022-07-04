@@ -1,4 +1,9 @@
 #! /bin/bash
+
+echo "+========================================================================+"
+echo "+     Don't use this for systems that run the worker through systemd     +"
+echo "+========================================================================+"
+
 if ps -ef |grep worker.py |grep -v grep > /dev/null
     then
         reply=$(ps -ef | grep worker.py | grep -v sudo| grep -v grep)
