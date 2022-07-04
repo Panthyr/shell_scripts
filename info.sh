@@ -16,6 +16,8 @@ echo "           MEMORY             "
 echo "------------------------------"
 free
 echo "------------------------------"
-echo "USE ~/scripts/running.sh TO CHECK WORKER SCRIPT STATUS."
+echo "USE systemctl status p_worker.service TO CHECK WORKER SERVICE STATUS."
 echo "USE ~/scripts/csl.sh TO CHECK SYSTEM LOGS FOR CRON MESSAGES."
 echo "------------------------------"
+echo "CURRENT STATUS:               "
+systemctl status p_worker.service
