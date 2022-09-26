@@ -4,17 +4,22 @@ stdout=$(tempfile)
 stderr=$(tempfile)
 
 
-for d in /home/hypermaq/repos/panthyr*/ ; do
-    echo "-> Pulling for $d"
-    cd $d
+for repo in /home/hypermaq/repos/panthyr*/ ; do
+    echo "-> Pulling for $repo"
+    cd $repo
     if ! git pull </dev/null >$stdout 2>$stderr; then
         echo "*********"
         cat $stderr >&2
         echo "*********"
+    else
+        cat $stout > &2
     fi
     rm -f $stdout $stderr
     
-chmod +x /home/hypermaq/repos/shell_scripts/*.sh
+    if [ $repo = "shell_scripts" ]; then
+        chmod +x *.sh
+        ls -lah
+    fi
 
 echo "DONE."
 done
