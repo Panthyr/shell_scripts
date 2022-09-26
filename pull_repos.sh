@@ -13,6 +13,8 @@ for d in /home/hypermaq/repos/panthyr*/ ; do
         echo "*********"
     fi
     rm -f $stdout $stderr
+    
+chmod +x /home/hypermaq/repos/shell_scripts/*.sh
 
 echo "DONE."
 done
