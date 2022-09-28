@@ -11,8 +11,6 @@ for repo in /home/hypermaq/repos/panthyr*/ ; do
         echo "*********"
         cat $stderr >&2
         echo "*********"
-    else
-        cat $stout > &2
     fi
     rm -f $stdout $stderr
     
