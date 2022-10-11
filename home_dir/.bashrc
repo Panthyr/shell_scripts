@@ -129,6 +129,6 @@ alias tm='/home/hypermaq/repos/shell_scripts/tmuxn.sh'
 /home/hypermaq/repos/shell_scripts/info.sh
 
 # SET SYSTEM OPTIONS #
-PS1='\n\e[33;1m\u:\e[31m\w$ \e[m' #colored prompt with extra spacing for readability
+PS1='\n[\e[33;1m\u@\e[101m\h\e[49m]:\n\e[31m\w$ \e[m' #colored prompt with extra spacing for readability
 export TERM=xterm-color
 export PATH=/home/hypermaq/repos/shell_scripts:$PATH
