@@ -123,6 +123,7 @@ alias ls='ls -lah --group-directories-first'
 alias rep='cd /home/hypermaq/repos'
 alias tal='/usr/bin/tail -f /home/hypermaq/data/logs/panthyr_log.log'
 alias gpc='git -C /home/hypermaq/repos/panthyr_core/ pull'
+alias t='/home/hypermaq/repos/shell_scripts/tmuxn.sh'
 
 # RUN AT LOGIN #
 /home/hypermaq/repos/shell_scripts/info.sh
