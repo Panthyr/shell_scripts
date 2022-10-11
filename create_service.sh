@@ -18,6 +18,8 @@ WorkingDirectory=/home/hypermaq
 Type=simple
 User=hypermaq
 ExecStart=/bin/bash -c '/home/hypermaq/.local/bin/worker'
+StandardOutput=append:/home/hypermaq/logs/service_stdout.log  # append only works starting at systemd 240
+StandardError=append:/home/hypermaq/logs/service_stdout.log
 Restart=on-success
 RestartSec=5s
 [Install]
