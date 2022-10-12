@@ -21,4 +21,4 @@ echo "USE csl.sh TO CHECK SYSTEM LOGS FOR CRON MESSAGES."
 echo "=============================="
 echo "       WORKER SERVICE         "
 echo "=============================="
-systemctl status p_worker.service
+systemctl --no-pager status p_worker.service

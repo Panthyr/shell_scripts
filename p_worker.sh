@@ -3,8 +3,9 @@ RED='\033[0;31m'
 GREEN='\033[1;32m'
 NC='\033[0m' # No Color
 
-if [ "$1" = "start" ]
-then 
+start_service()
+{
+    echo -e "STARTING WORKER SERVICE\n"
     sudo systemctl start p_worker.service
     if [ $? -eq 0 ]
     then
@@ -15,13 +16,14 @@ then
         echo -e "${RED}+===============================+"
         echo "| Issue while starting service! |"
         echo "+===============================+"
-        echo ""
-        sudo systemctl status p_worker.service
+        echo -e "${NC}"
+        sudo systemctl --no-pager status p_worker.service
     fi
-fi
+}
 
-if [ "$1" = "stop" ]
-then 
+stop_service()
+{
+    echo -e "STOPPING WORKER SERVICE\n"
     sudo systemctl stop p_worker.service
     if [ $? -eq 1 ]
     then
@@ -32,10 +34,26 @@ then
         echo -e "${RED}+===============================+"
         echo "| Issue while stopping service! |"
         echo "+===============================+"
-        echo ""
-        sudo systemctl status p_worker.service
+        echo -e "${NC}"
+        sudo systemctl --no-pager status p_worker.service
     fi
-fi 
+}
+
+if [ "$1" = "restart" ]
+then
+    stop_service
+    start_service
+fi
+
+if [ "$1" = "start" ]
+then 
+    start_service
+fi
+
+if [ "$1" = "stop" ]
+then 
+    stop_service
+fi
 
 if [ "$1" = "status" ]
 then 
