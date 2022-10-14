@@ -25,7 +25,7 @@ stop_service()
 {
     echo -e "STOPPING WORKER SERVICE\n"
     sudo systemctl stop p_worker.service
-    if [ $? -eq 1 ]
+    if [ $? -eq 0 ]
     then
         echo -e "${GREEN}+=====================+"
         echo "| Stopped succesfully |"
