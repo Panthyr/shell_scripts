@@ -26,7 +26,7 @@ def main():
     failed_install: List = []  # List of failed package installs
 
     _reqs = input('Do you want to install from requirements files?\n'
-                  'Enter "y" to install')
+                  'Enter "y" to install ')
     install_reqs = _reqs == 'y'
 
     for repo in REPOS_LIST:
@@ -64,7 +64,7 @@ def install_pkg(repo: str, req: bool, failed_install: List):
 
 
 def upgrade_pip() -> None:
-    print('Upgrading PIP', end='', flush=False)
+    print('Upgrading PIP and disttools... ', end='', flush=False)
     rtn = subprocess.run(['pip', 'install', '--upgrade', 'pip', 'disttools'],
                          capture_output=True,
                          text=True)
