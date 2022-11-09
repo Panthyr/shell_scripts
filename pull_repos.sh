@@ -1,23 +1,22 @@
 #!/bin/bash
 
-stdout=$(tempfile)
-stderr=$(tempfile)
+stdout=$(mktemp)
+stderr=$(mktemp)
 
-
-for repo in /home/hypermaq/repos/panthyr*/ ; do
+for repo in /home/hypermaq/repos/panthyr*/; do
     echo "-> Pulling for $repo"
-    cd $repo
-    if ! git pull </dev/null >$stdout 2>$stderr; then
+    cd "$repo" || exit
+    if ! git pull </dev/null >"$stdout" 2>"$stderr"; then
         echo "*********"
-        cat $stderr >&2
+        cat "$stderr" >&2
         echo "*********"
     fi
-    rm -f $stdout $stderr
-    
-    if [ $repo = "shell_scripts" ]; then
-        chmod +x *.sh
+    rm -f "$stdout" "$stderr"
+
+    if [ "$repo" = "shell_scripts" ]; then
+        chmod +x ./*.sh
         ls -lah
     fi
 
-echo "DONE."
+    echo "DONE."
 done
