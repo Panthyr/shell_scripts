@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# nosec B607
+# nosec B603
 
 from typing import List
 import os
@@ -11,7 +13,7 @@ DIR_FOR_REPOS: str = '/home/hypermaq/repos'
 REPOS_LIST: List[str] = [
     'shell_scripts', 'panthyr_logging', 'panthyr_db', 'panthyr_credentials', 'panthyr_core',
     'panthyr_suncalc', 'panthyr_gpio', 'panthyr_ftp', 'panthyr_flir_ptu_d48e', 'panthyr_gnss',
-    'panthyr_ip_check'
+    'panthyr_ip_check', 'panthyr_ipcam'
 ]
 
 
@@ -63,7 +65,9 @@ def install_pkg(repo: str, req: bool, failed_install: List):
 
 def upgrade_pip() -> None:
     print('Upgrading PIP', end='', flush=False)
-    rtn = subprocess.run(['pip', 'install', '--upgrade', 'pip'], capture_output=True, text=True)
+    rtn = subprocess.run(['pip', 'install', '--upgrade', 'pip', 'disttools'],
+                         capture_output=True,
+                         text=True)
     if rtn.returncode == 0:
         print('OK.')
     else:
