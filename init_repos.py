@@ -8,7 +8,7 @@ import shutil
 import sys
 import subprocess
 
-DIR_FOR_REPOS: str = '/home/hypermaq/repos'
+DIR_FOR_REPOS: str = '/home/panthyr/repos'
 # REPOS_LIST: list of all repo names that need to be cloned from github.com/Panthyr
 REPOS_LIST: List[str] = [
     'shell_scripts', 'panthyr_logging', 'panthyr_db', 'panthyr_credentials', 'panthyr_core',
@@ -25,9 +25,8 @@ def main():
     failed_clone: List = []  # List of failed clones
     failed_install: List = []  # List of failed package installs
 
-    _reqs = input('Do you want to install from requirements files?\n'
-                  'Enter "y" to install ')
-    install_reqs = _reqs == 'y'
+    install_reqs: bool = 'y' == input('Do you want to install from requirements files?\n'
+                                      'Enter "y" to install ').lower()
 
     for repo in REPOS_LIST:
         failed_clone = clone_repo(repo, failed_clone)
