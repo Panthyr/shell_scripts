@@ -1,5 +1,5 @@
 Host github
     HostName github.com
     User git
-    IdentityFile /home/hypermaq/.ssh/panthyr
+    IdentityFile /home/panthyr/.ssh/panthyr
     IdentitiesOnly yes
