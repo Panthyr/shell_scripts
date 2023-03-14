@@ -89,7 +89,7 @@ def install_requirements(repo: str, failed_install: List):
 
 
 def clone_repo(repo: str, failed: List):
-    full_identifier: str = f'git@github.com:Panthyr/{repo}.git'
+    full_identifier: str = f'git@github:Panthyr/{repo}.git'
     target_dir: str = _target_dir(repo)
     print(f'-> CLONING {full_identifier}...', end='', flush=False)
     rtn = subprocess.run(['git', 'clone', full_identifier, target_dir],
@@ -116,7 +116,7 @@ def prepare_dir():
     if os.path.isdir(DIR_FOR_REPOS):
         cleanup: str = input(
             f'Directory {DIR_FOR_REPOS} exists. Delete recursively and start over?\n'
-            'Enter "y" to delete')
+            'Enter "y" to delete: ')
         if cleanup == 'y':
             print(f'Performing recursive delete of {DIR_FOR_REPOS}...')
             try:
