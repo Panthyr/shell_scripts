@@ -91,7 +91,6 @@ fi
 ##### PANTHYR THINGS ######
 
 # ALIASSES #
-# alias scr='cd /home/hypermaq/scripts'
 alias dat='cd /home/panthyr/data'
 alias db='/usr/bin/sqlite3 /home/panthyr/data/hypermaq.db'
 alias vi='vim'
