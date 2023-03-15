@@ -89,7 +89,7 @@ def install_requirements(repo: str, failed_install: List):
 
 
 def clone_repo(repo: str, failed: List):
-    full_identifier: str = f'git@github:Panthyr/{repo}.git'
+    full_identifier: str = f'git@github.com:Panthyr/{repo}.git'
     target_dir: str = _target_dir(repo)
     print(f'-> CLONING {full_identifier}...', end='', flush=False)
     rtn = subprocess.run(['git', 'clone', full_identifier, target_dir],
