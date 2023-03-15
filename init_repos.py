@@ -26,7 +26,7 @@ def main():
     failed_install: List = []  # List of failed package installs
 
     install_reqs: bool = 'y' == input('Do you want to install from requirements files?\n'
-                                      'Enter "y" to install ').lower()
+                                      'Enter "y" to install: ').lower()
 
     for repo in REPOS_LIST:
         failed_clone = clone_repo(repo, failed_clone)
@@ -47,7 +47,7 @@ def main():
 
 
 def install_pkg(repo: str, req: bool, failed_install: List):
-    print(f'-> INSTALLING PACKAGE {repo} (MASTER branch!)...', end='', flush=False)
+    print(f'-> INSTALLING PACKAGE {repo} (MASTER branch!)...', end='', flush=True)
     rtn = subprocess.run(['pip', 'install', '-e', _target_dir(repo)],
                          capture_output=True,
                          text=True)
@@ -63,7 +63,7 @@ def install_pkg(repo: str, req: bool, failed_install: List):
 
 
 def upgrade_pip() -> None:
-    print('Upgrading PIP and disttools... ', end='', flush=False)
+    print('Upgrading PIP and disttools... ', end='', flush=True)
     rtn = subprocess.run(['pip', 'install', '--upgrade', 'pip', 'disttools'],
                          capture_output=True,
                          text=True)
@@ -75,7 +75,7 @@ def upgrade_pip() -> None:
 
 
 def install_requirements(repo: str, failed_install: List):
-    print(f'-> INSTALLING REQUIREMENTS FOR PACKAGE {repo}...', end='', flush=False)
+    print(f'-> INSTALLING REQUIREMENTS FOR PACKAGE {repo}...', end='', flush=True)
     rtn = subprocess.run(
         ['pip', 'install', '-r', _requirements_location(repo)], capture_output=True, text=True)
 
