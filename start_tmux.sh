@@ -1,3 +1,3 @@
 #! /bin/bash
 # copy to /etc/profile.d
-/home/hypermaq/repos/shell_scripts/tmuxn.sh
+/home/panthyr/repos/shell_scripts/tmuxn.sh

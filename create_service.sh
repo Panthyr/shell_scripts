@@ -1,25 +1,24 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root"
   exit
 fi
 
-
 FILENAME="/etc/systemd/system/p_worker.service"
 
-sudo cat > $FILENAME << EOF
+cat >$FILENAME <<EOF
 [Unit]
 Description=Panthyr worker
 After=multi-user.target
-ConditionPathExists=/home/hypermaq/.local/bin/worker
+ConditionPathExists=/home/panthyr/.local/bin/worker
 [Service]
-WorkingDirectory=/home/hypermaq
+WorkingDirectory=/home/panthyr
 Type=simple
 User=hypermaq
-ExecStart=/bin/bash -c '/home/hypermaq/.local/bin/worker'
-StandardOutput=append:/home/hypermaq/logs/service_stdout.log  # append only works starting at systemd 240
-StandardError=append:/home/hypermaq/logs/service_stdout.log
+ExecStart=/bin/bash -c '/home/panthyr/.local/bin/worker'
+StandardOutput=append:/home/panthyr/logs/service_stdout.log  # append only works starting at systemd 240
+StandardError=append:/home/panthyr/logs/service_stdout.log
 Restart=on-success
 RestartSec=5s
 [Install]

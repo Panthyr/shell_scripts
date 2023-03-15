@@ -3,7 +3,7 @@
 stdout=$(mktemp)
 stderr=$(mktemp)
 
-for repo in /home/hypermaq/repos/panthyr*/; do
+for repo in /home/panthyr/repos/*/; do
     echo "-> Pulling for $repo"
     cd "$repo" || exit
     if ! git pull </dev/null >"$stdout" 2>"$stderr"; then
