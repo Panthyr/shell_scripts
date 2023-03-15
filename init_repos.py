@@ -47,18 +47,19 @@ def main():
 
 
 def install_pkg(repo: str, req: bool, failed_install: List):
-    print(f'-> INSTALLING PACKAGE {repo} (MASTER branch!)...', end='', flush=True)
-    rtn = subprocess.run(['pip', 'install', '-e', _target_dir(repo)],
-                         capture_output=True,
-                         text=True)
-    if rtn.returncode == 0:
-        print('OK.')
-    else:
-        print('\nIssue during installation:')
-        print(f'{rtn.stderr}')
-        failed_install.append(f'{repo}')
-    if req:
-        failed_install = install_requirements(repo, failed_install)
+    if repo != 'shell_scripts':
+        print(f'-> INSTALLING PACKAGE {repo} (MASTER branch!)...', end='', flush=True)
+        rtn = subprocess.run(['pip', 'install', '-e', _target_dir(repo)],
+                             capture_output=True,
+                             text=True)
+        if rtn.returncode == 0:
+            print('OK.')
+        else:
+            print('\nIssue during installation:')
+            print(f'{rtn.stderr}')
+            failed_install.append(f'{repo}')
+        if req:
+            failed_install = install_requirements(repo, failed_install)
     return (failed_install)
 
 
@@ -91,7 +92,7 @@ def install_requirements(repo: str, failed_install: List):
 def clone_repo(repo: str, failed: List):
     full_identifier: str = f'git@github.com:Panthyr/{repo}.git'
     target_dir: str = _target_dir(repo)
-    print(f'-> CLONING {full_identifier}...', end='', flush=False)
+    print(f'-> CLONING {full_identifier}...', end='', flush=True)
     rtn = subprocess.run(['git', 'clone', full_identifier, target_dir],
                          capture_output=True,
                          text=True)
