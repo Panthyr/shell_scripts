@@ -1,3 +1,4 @@
+#!/bin/bash
 echo ""
 echo "=============================="
 echo "      UPTIME AND LOGINS       "
@@ -10,10 +11,6 @@ echo "=============================="
 echo "         DISK USAGE           "
 echo "=============================="
 df -h -x tmpfs -x udev # disk usage, minus def and swap
-echo ""
-echo "           MEMORY             "
-echo "=============================="
-free
 echo "=============================="
 echo "USE p_worker.sh status TO CHECK WORKER SERVICE STATUS"
 echo "USE p_worker.sh logs TO CHECK WORKER SERVICE LOGS"
