@@ -8,8 +8,9 @@ fi
 echo "Installing bbbphyfix."
 rm -r bbbphyfix/
 git clone https://github.com/bigjosh/bbbphyfix
-cd bbbphyfix/ || echo "Could not enter directory, Now exiting" && exit
+cd ./bbbphyfix/ || (echo "Could not enter directory, Now exiting" && exit)
 ./install
+cd ..
 sync
 
 echo "Performing additional configuration."
@@ -20,5 +21,6 @@ if ! i2cdetect -l >/dev/null; then
     apt install i2c-tools
 fi
 timedatectl set-timezone UTC
-
+echo "Removing files"
+rm -r ./bbbphyfix
 echo "Done."
