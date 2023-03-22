@@ -15,10 +15,10 @@ ConditionPathExists=/home/panthyr/.local/bin/worker
 [Service]
 WorkingDirectory=/home/panthyr
 Type=simple
-User=hypermaq
+User=panthyr
 ExecStart=/bin/bash -c '/home/panthyr/.local/bin/worker'
 StandardOutput=append:/home/panthyr/logs/service_stdout.log  # append only works starting at systemd 240
-StandardError=append:/home/panthyr/logs/service_stdout.log
+StandardError=append:/home/panthyr/logs/service_stderr.log
 Restart=on-success
 RestartSec=5s
 [Install]
