@@ -21,4 +21,4 @@ echo ""
 echo "=============================="
 echo "       WORKER SERVICE         "
 echo "=============================="
-systemctl --no-pager status p_worker.service
+systemctl --full --no-pager status p_worker.service
