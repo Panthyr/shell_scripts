@@ -18,22 +18,23 @@ After=network.target
 
 [Service]
 User=panthyr
-ExecStart=/usr/bin/ssh -p 9022 -v -g -N -T -o "ServerAliveInterval 10" -o "ExitOnForwardFailure yes" -R $PORT_NUMBER:127.0.0.1:22 -l panthyr enhydra.naturalsciences.be
+ExecStart=/usr/bin/ssh -p 9022 -g -N -T -o "ServerAliveInterval 10" -o "ExitOnForwardFailure yes" -R $PORT_NUMBER:127.0.0.1:22 -l panthyr enhydra.naturalsciences.be
 Restart=always
 RestartSec=5s
 StartLimitInterval=0
 # append only works starting at systemd 240
-StandardOutput=append:/home/panthyr/data/logs/service_reserse_ssh_stdout.log
+StandardOutput=append:/home/panthyr/data/logs/service_reverse_ssh_stdout.log
 StandardError=append:/home/panthyr/data/logs/service_reverse_ssh_stderr.log
-alias=reverse_ssh
+Alias=reverse_ssh
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
 chmod 644 $FILENAME
-
-echo "Created service file $FILENAME using port $PORT_NUMBER"
+echo "----------------------"
+echo "Created service file $FILENAME using port $PORT_NUMBER."
+echo "----------------------"
 
 systemctl daemon-reload && systemctl enable reverse_ssh.service && systemctl start reverse_ssh.service
 
