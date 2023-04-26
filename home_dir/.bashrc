@@ -92,7 +92,7 @@ fi
 
 # ALIASSES #
 alias dat='cd /home/panthyr/data'
-alias db='/usr/bin/sqlite3 /home/panthyr/data/hypermaq.db'
+alias db='/usr/bin/sqlite3 /home/panthyr/data/panthyr.db'
 alias vi='vim'
 alias ls='ls -lah --group-directories-first'
 alias rep='cd /home/panthyr/repos'
