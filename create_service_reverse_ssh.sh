@@ -20,7 +20,7 @@ After=network.target
 User=panthyr
 ExecStart=/usr/bin/ssh -p 9022 -g -N -T -o "ServerAliveInterval 10" -o "ExitOnForwardFailure yes" -R $PORT_NUMBER:127.0.0.1:22 -l panthyr enhydra.naturalsciences.be
 Restart=always
-RestartSec=5s
+RestartSec=600s
 StartLimitInterval=0
 # append only works starting at systemd 240
 StandardOutput=append:/home/panthyr/data/logs/service_reverse_ssh_stdout.log
