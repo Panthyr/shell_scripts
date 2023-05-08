@@ -1,7 +1,10 @@
-# place in /home/hypermaq/.ssh directory
-
-Host *
+Host github
     HostName github.com
     User git
-    IdentityFile /home/hypermaq/.ssh/panthyr
+    IdentityFile /home/panthyr/.ssh/panthyr
+    IdentitiesOnly yes
+Host enhydra.*
+    Hostname enhydra.naturalsciences.be
+    User panthyr
+    IdentityFile /home/panthyr/.ssh/panthyr_rev_ssh_REPLACE_WITH_CORRECT_KEY_NAME
     IdentitiesOnly yes
