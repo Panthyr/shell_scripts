@@ -1,0 +1,37 @@
+# Sphinx documentation
+docs/build/
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+*.pyc
+
+### zip files ###
+*.zip
+
+### Credentials file
+credentials*
+
+### scratchpad directory
+scratchpad/
+
+### VisualStudioCode ###
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+workspace.code-workspace
+
+### Sphinx
+docs/build/
