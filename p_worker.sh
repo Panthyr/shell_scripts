@@ -44,7 +44,8 @@ stop_service()
 if [ "$1" = "restart" ]
 then
     stop_service
-    echo "--------------------------------------------------"
+    echo "WAITING 5 SECONDS TO LET SERVICE SHUT DOWN..."
+    sleep 5
     start_service
 fi
 
