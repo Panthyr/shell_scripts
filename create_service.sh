@@ -20,8 +20,8 @@ ExecStart=/bin/bash -c '/home/panthyr/.local/bin/worker'
 # append only works starting at systemd 240
 StandardOutput=append:/home/panthyr/data/logs/service_stdout.log
 StandardError=append:/home/panthyr/data/logs/service_stderr.log
-Restart=on-failure
-RestartSec=600s
+Restart=always
+RestartSec=300s
 [Install]
 WantedBy=multi-user.target
 Alias=p_worker
