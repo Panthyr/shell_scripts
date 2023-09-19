@@ -106,7 +106,7 @@ fi
 alias dat='cd /home/panthyr/data'
 alias db='/usr/bin/sqlite3 /home/panthyr/data/panthyr.db'
 alias vi='vim'
-alias ls='ls -lah --group-directories-first'
+alias ls='ls -lah --group-directories-first --color'
 alias rep='cd /home/panthyr/repos'
 alias tal='/usr/bin/tail -f /home/panthyr/data/logs/panthyr_log.log'
 alias gpc='git -C /home/panthyr/repos/panthyr_core/ pull'
