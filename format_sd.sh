@@ -29,27 +29,29 @@ EOF
 
 create_directories()
 {
-echo "${GREEN}Mounting card and creating directories${NC}"
+echo -e "${GREEN}Creating directories and mounting card${NC}"
 mkdir /mnt/sd_card
 mount /dev/mmcblk0p1 /mnt/sd_card
 mkdir -p /mnt/sd_card/data/images
 mkdir -p /mnt/sd_card/data/logs
+chown -R panthyr:panthyr /mnt/sd_card
+chmod 775 -R /mnt/sd_card
 }
 
 format_to_ext4()
 {
 if [ "$1" = "fast" ]
     then
-        echo "${GREEN}--------------------------------------------------------------"
+        echo -e "${GREEN}--------------------------------------------------------------"
         echo "Formatting /dev/mmcblk0 to EXT4 WITHOUT CHECKING FOR BAD BLOCKS."
         echo "If the command warns the disk contains a file system or partition table, proceed anyway."
-        echo "--------------------------------------------------------------${NC}"
+        echo -e "--------------------------------------------------------------${NC}"
         mke2fs -L panthyr_sd -t ext4 /dev/mmcblk0p1
     else
-        echo "${GREEN}--------------------------------------------------------------"
+        echo -e "${GREEN}--------------------------------------------------------------"
         echo "Formatting /dev/mmcblk0 to EXT4"
         echo "If the command warns the disk contains a file system or partition table, proceed anyway."
-        echo "--------------------------------------------------------------${NC}"
+        echo -e "--------------------------------------------------------------${NC}"
         mke2fs -c -L panthyr_sd -t ext4 /dev/mmcblk0p1
 fi
 }
@@ -60,5 +62,5 @@ create_partition
 format_to_ext4 "$@"
 create_directories
 
-echo "${GREEN}Add to /etc/fstab:"
-echo "/dev/mmcblk0p1 /mnt/sd_card ext4 noatime,errors=remount-ro 0 1${NC}"
+echo -e "${GREEN}Add to /etc/fstab:"
+echo "/dev/mmcblk0p1 /mnt/sd_card ext4 defaults,auto,users,rw,nofail,x-systemd.device-timeout=15 0 0${NC}"
