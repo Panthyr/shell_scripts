@@ -13,7 +13,7 @@ DIR_FOR_REPOS: str = '/home/panthyr/repos'
 REPOS_LIST: List[str] = [
     'shell_scripts', 'panthyr_logging', 'panthyr_db', 'panthyr_credentials', 'panthyr_core',
     'panthyr_suncalc', 'panthyr_gpio', 'panthyr_ftp', 'panthyr_flir_ptu_d48e', 'panthyr_gnss',
-    'panthyr_ip_check', 'panthyr_ipcam'
+    'panthyr_ip_check', 'panthyr_ipcam', 'panthyr_sys_mgmt'
 ]
 
 
