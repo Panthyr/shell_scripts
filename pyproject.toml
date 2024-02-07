@@ -1,0 +1,86 @@
+[tool.bandit]
+exclude_dirs = ["tests"]
+# tests = ["B201", "B301"]
+# skips = ["B101", "B601"]
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+line-length = 100
+indent-width = 4
+
+[tool.ruff.lint]
+select = [
+    # Pycodestyle errors
+    "E",
+    # Pycodestyle warnings
+    "W",
+    # Pyflakes
+    "F",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # McCabe complex structure
+    "C901",
+    # PEP8 Naming
+    "N",
+    # Flake8-Bandit
+    "S",
+    # Flake8-builtins
+    "A",
+    # Flake8-commas
+    "COM",
+    # Flake8-datetimez
+    "DTZ",
+    # Flake8-errmsg
+    "EM",
+    # Flake8-use-pathlib
+    "PTH",
+    # tryceratops
+    "TRY",
+]
+
+ignore = [
+    # Use logging.exception instead of logging.error
+    "TRY400",
+    # Raising and catching exceptions in the same block may lead to confusion
+    "TRY301",
+
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+exclude = ["*.pyi"]
