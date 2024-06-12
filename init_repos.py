@@ -114,7 +114,7 @@ def clone_repo(repo: str, failed: List):
     target_dir: str = _target_dir(repo)
     print(f'-> CLONING {full_identifier}...', end='', flush=True)
     rtn = subprocess.run(
-        ['git', 'clone', full_identifier, target_dir], capture_output=True, text=True
+        ['git', 'clone', full_identifier, target_dir]f
     )
     if rtn.returncode == 0:
         print('OK.')

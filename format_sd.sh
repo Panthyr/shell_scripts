@@ -62,5 +62,6 @@ create_partition
 format_to_ext4 "$@"
 create_directories
 
+echo -e ""
 echo -e "${GREEN}Add to /etc/fstab:"
 echo -e "/dev/mmcblk0p1 /mnt/sd_card ext4 defaults,auto,users,rw,nofail,x-systemd.device-timeout=15 0 0${NC}"
