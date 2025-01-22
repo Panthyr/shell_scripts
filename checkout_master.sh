@@ -6,7 +6,7 @@ stderr=$(mktemp)
 for repo in /home/panthyr/repos/*/; do
     cd "$repo" || exit
     echo "-> Checking out master for repo $repo"
-    if ! git checkout master </dev/null >"$stdout" 2>"$stderr"; then
+    if ! git checkout develop </dev/null >"$stdout" 2>"$stderr"; then
         echo "*********"
         cat "$stderr" >&2
         echo "*********"
