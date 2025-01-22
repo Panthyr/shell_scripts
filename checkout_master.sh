@@ -5,8 +5,15 @@ stderr=$(mktemp)
 
 for repo in /home/panthyr/repos/*/; do
     cd "$repo" || exit
-    branch=$(git symbolic-ref --short HEAD)
-    echo "-> Pulling for $repo, branch $branch"
+    echo "-> Checking out master for repo $repo"
+    if ! git checkout develop </dev/null >"$stdout" 2>"$stderr"; then
+        echo "*********"
+        cat "$stderr" >&2
+        echo "*********"
+    fi
+    rm -f "$stdout" "$stderr"
+
+    echo "-> Pulling for $repo"
     if ! git pull </dev/null >"$stdout" 2>"$stderr"; then
         echo "*********"
         cat "$stderr" >&2
