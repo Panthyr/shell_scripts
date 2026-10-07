@@ -61,9 +61,6 @@ SELECT * FROM src.settings;
 
 DETACH src;
 "
-<<<<<<< HEAD
-=======
-
 # Preserve AUTOINCREMENT counters so IDs do not restart.
 if [ "$(sqlite3 -noheader -init /dev/null "$SRC_DB" "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';")" -gt 0 ]; then
 sqlite3 "$DST_DB" "
@@ -90,4 +87,3 @@ chmod 666 "$DST_DB"
 # give user further instructions
 echo "To remove the old database and put the new one in place use:"
 echo "mv -f \"$DST_DB\" \"$SRC_DB\""
->>>>>>> 072454cba4e24c6f329840d462dc7bb70fae2b63
