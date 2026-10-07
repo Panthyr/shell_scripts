@@ -4,8 +4,9 @@ stdout=$(mktemp)
 stderr=$(mktemp)
 
 for repo in /home/panthyr/repos/*/; do
-    echo "-> Pulling for $repo"
     cd "$repo" || exit
+    branch=$(git symbolic-ref --short HEAD)
+    echo "-> Pulling for $repo, branch $branch"
     if ! git pull </dev/null >"$stdout" 2>"$stderr"; then
         echo "*********"
         cat "$stderr" >&2

@@ -6,7 +6,13 @@ DST_DB="/home/panthyr/data/panthyr_new.db"
 rm -f "$DST_DB"
 
 # Create tables and views
-# sql IS NOT NULL skips SQLite's internal autoindexes
+#
+# "-init /dev/null" makes sqlite3 skip .sqliterc , 
+#   so settings like .headers on, .mode column, or .separator 
+#   won't interfere with the piped SQL output.
+#
+# "sql IS NOT NULL" skips SQLite's internal autoindexes
+#
 sqlite3 -noheader -init /dev/null "$SRC_DB" "
 SELECT sql || ';'
 FROM sqlite_master
@@ -55,3 +61,33 @@ SELECT * FROM src.settings;
 
 DETACH src;
 "
+<<<<<<< HEAD
+=======
+
+# Preserve AUTOINCREMENT counters so IDs do not restart.
+if [ "$(sqlite3 -noheader -init /dev/null "$SRC_DB" "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';")" -gt 0 ]; then
+sqlite3 "$DST_DB" "
+ATTACH '$SRC_DB' AS src;
+
+INSERT OR REPLACE INTO sqlite_sequence(name, seq)
+SELECT name, seq
+FROM src.sqlite_sequence
+WHERE name IN (
+  'protocol',
+  'settings',
+  'logs',
+  'queue',
+  'measurements'
+);
+
+DETACH src;
+"
+fi
+
+# Set correct permissions
+chmod 666 "$DST_DB"
+
+# give user further instructions
+echo "To remove the old database and put the new one in place use:"
+echo "mv -f \"$DST_DB\" \"$SRC_DB\""
+>>>>>>> 072454cba4e24c6f329840d462dc7bb70fae2b63
